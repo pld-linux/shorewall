@@ -1,0 +1,69 @@
+#!/bin/sh
+#
+# shorewall		The Shoreline Firewall (Shorewall) Packet Filtering Firewall 
+#
+# chkconfig:	2345 25 90
+#
+# description: Packet filtering firewall
+#
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+# Get network config
+. /etc/sysconfig/network
+
+# Get shorewall config
+. /etc/sysconfig/shorewall
+
+SHOREWALLEXEC="/sbin/shorewall"
+
+if is_yes "${NETWORKING}"; then
+	 	if [ ! -f /var/lock/subsys/network ]; then
+			 	msg_network_down shorewall
+				exit 1
+		fi
+else
+	 	exit 0
+fi
+
+case "$1" in
+	 start)
+	 	if [ ! -f /var/lock/subsys/shorewall ]; then
+			 if [ "$DOIT" = "yes" ] ; then
+				  #msg_starting shorewall; busy
+				  #if exec $SHOREWALLEXEC -f start 2>&1 | grep "Shorewall started"; then fail; else ok; fi
+				  msg_starting shorewall; busy
+              exec $SHOREWALLEXEC -f start
+				  touch /var/lock/subsys/shorewall
+			 else
+				  echo "Make sure that you have configured shorewall and set DOIT=\"yes\" in /etc/sysconfig/shorewall"
+				  exit 3
+			 fi
+		else
+			 msg_already_running shorewall
+		fi
+		;;
+	 stop)
+	 	if [ -f /var/lock/subsys/shorewall ]; then
+			 msg_stopping shorewall
+			 exec $SHOREWALLEXEC stop
+			 rm -f /var/lock/subsys/shorewall >/dev/null 2>&1
+		else
+			 msg_not_running shorewall
+		fi
+		;;
+	 status)
+	 	status shorewall
+	   exec $SHOREWALLEXEC status
+		exit $?
+		;;
+	 restart)
+		$0 stop
+		$0 start
+		exit $?
+		;;
+	 *)
+	 	msg_usage "$0 {start|stop|restart|status}"
+		exit 3
+esac

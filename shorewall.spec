@@ -1,11 +1,11 @@
 Summary:	Shoreline Firewall - an iptables-based firewall for Linux systems
 Summary(pl):	Shoreline Firewall - zapora sieciowa oparta na iptables
 Name:		shorewall
-Version:	2.0.15
+Version:	2.2.0
 Release:	0.1
 License:	GPL
 Group:		Networking/Utilities
-Source0:	http://shorewall.net/pub/shorewall/2.0/%{name}-%{version}/%{name}-%{version}.tgz
+Source0:	http://shorewall.net/pub/shorewall/2.2/%{name}-%{version}/%{name}-%{version}.tgz
 # Source0-md5:	58279071519202a73978f10f44a1b754
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
@@ -99,6 +99,7 @@ fi
 %attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/ecn
 %attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/accounting
 %attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/actions
+%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/ipsec
 
 %attr(754,root,root) /sbin/shorewall
 
@@ -108,6 +109,7 @@ fi
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowAuth
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowDNS
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowFTP
+%attr(600,root,root) %{_datadir}/shorewall/action.AllowICMPs
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowIMAP
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowNNTP
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowNTP

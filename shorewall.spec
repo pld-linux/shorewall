@@ -35,8 +35,6 @@ i prostotê konfiguracji.
 %setup -q
 %patch -p1
 
-%build
-
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/etc/rc.d/init.d

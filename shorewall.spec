@@ -13,6 +13,7 @@ Patch0:         %{name}-config.patch
 URL:		http://www.shorewall.net/
 Requires:	iproute2
 Requires:	iptables
+Requires:	bash
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

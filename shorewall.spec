@@ -1,5 +1,5 @@
 Summary:	Shoreline Firewall - an iptables-based firewall for Linux systems
-Summary(pl):	Shoreline Firewall - ¶ciana ogniowa oparta na iptables
+Summary(pl):	Shoreline Firewall - ¶ciana przeciwogniowa oparta na iptables
 Name:		shorewall
 Version:	2.0.8
 Release:	0.1

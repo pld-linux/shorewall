@@ -9,6 +9,7 @@
 
 # Source function library
 . /etc/rc.d/init.d/functions
+. /usr/share/shorewall/functions
 
 # Get network config
 . /etc/sysconfig/network
@@ -34,7 +35,7 @@ case "$1" in
 				  #msg_starting shorewall; busy
 				  #if exec $SHOREWALLEXEC -f start 2>&1 | grep "Shorewall started"; then fail; else ok; fi
 				  msg_starting shorewall; busy
-              exec $SHOREWALLEXEC -f start
+              exec $SHOREWALLEXEC -q start
 				  touch /var/lock/subsys/shorewall
 			 else
 				  echo "Make sure that you have configured shorewall and set DOIT=\"yes\" in /etc/sysconfig/shorewall"

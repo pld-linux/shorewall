@@ -9,7 +9,7 @@ Source0:	http://shorewall.net/pub/shorewall/2.0/%{name}-%{version}/%{name}-%{ver
 # Source0-md5:	4d0f756b5b63a68593b2de560c1a5b35
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
-Patch0:         %{name}-config.patch
+Patch0:		%{name}-config.patch
 URL:		http://www.shorewall.net/
 Requires:	iproute2
 Requires:	iptables

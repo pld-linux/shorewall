@@ -6,7 +6,7 @@ Release:	0.1
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://shorewall.net/pub/shorewall/2.0/%{name}-%{version}/%{name}-%{version}.tgz
-# Source0-md5:	b3656ec857d55878b739d8f903de957d
+# Source0-md5:	d746419e0b4ead8767f6b957e0d7744f
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Patch0:		%{name}-config.patch

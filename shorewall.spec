@@ -19,7 +19,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 The Shoreline Firewall, more commonly known as "Shorewall", is an easy
-to ues Netfilter (iptables) based firewall that can be used on a
+to use Netfilter (iptables) based firewall that can be used on a
 dedicated firewall system, a multi-function gateway/ router/server or
 on a standalone GNU/Linux system.
 

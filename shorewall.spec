@@ -1,12 +1,12 @@
 Summary:	Shoreline Firewall - an iptables-based firewall for Linux systems
 Summary(pl):	Shoreline Firewall - zapora sieciowa oparta na iptables
 Name:		shorewall
-Version:	2.2.2
+Version:	2.2.3
 Release:	0.1
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://shorewall.net/pub/shorewall/2.2/%{name}-%{version}/%{name}-%{version}.tgz
-# Source0-md5:	eb0ad1ad0867299e372e7f2522092751
+# Source0-md5:	df114b25a419d77915598de5844b423e
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Patch0:		%{name}-config.patch
@@ -98,6 +98,7 @@ fi
 %attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/accounting
 %attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/actions
 %attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/ipsec
+%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/continue
 
 %attr(754,root,root) /sbin/shorewall
 

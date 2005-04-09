@@ -2,7 +2,7 @@
 #
 # shorewall		The Shoreline Firewall (Shorewall) Packet Filtering Firewall 
 #
-# chkconfig:	2345 25 90
+# chkconfig:	345 09 98
 #
 # description: Packet filtering firewall
 #
@@ -17,54 +17,39 @@
 # Get shorewall config
 . /etc/sysconfig/shorewall
 
-SHOREWALLEXEC="/sbin/shorewall"
-
-if is_yes "${NETWORKING}"; then
-	 	if [ ! -f /var/lock/subsys/network ]; then
-			 	msg_network_down shorewall
-				exit 1
-		fi
-else
-	 	exit 0
-fi
-
+# See how we were called.
 case "$1" in
-	 start)
-	 	if [ ! -f /var/lock/subsys/shorewall ]; then
-			 if [ "$DOIT" = "yes" ] ; then
-				  #msg_starting shorewall; busy
-				  #if exec $SHOREWALLEXEC -f start 2>&1 | grep "Shorewall started"; then fail; else ok; fi
-				  msg_starting shorewall; busy
-              exec $SHOREWALLEXEC -q start
-				  touch /var/lock/subsys/shorewall
-			 else
-				  echo "Make sure that you have configured shorewall and set DOIT=\"yes\" in /etc/sysconfig/shorewall"
-				  exit 3
-			 fi
-		else
-			 msg_already_running shorewall
-		fi
-		;;
-	 stop)
-	 	if [ -f /var/lock/subsys/shorewall ]; then
-			 msg_stopping shorewall
-			 exec $SHOREWALLEXEC stop
-			 rm -f /var/lock/subsys/shorewall >/dev/null 2>&1
-		else
-			 msg_not_running shorewall
-		fi
-		;;
-	 status)
-	 	status shorewall
-	   exec $SHOREWALLEXEC status
-		exit $?
-		;;
-	 restart)
-		$0 stop
-		$0 start
-		exit $?
-		;;
-	 *)
-	 	msg_usage "$0 {start|stop|restart|status}"
-		exit 3
+  start)
+	if [ ! -f /var/lock/subsys/shorewall ]; then
+		msg_starting Shorewall
+		deltext ; ok
+		exec /sbin/shorewall -q start >/dev/null
+		touch /var/lock/subsys/shorewall
+	else
+		msg_already_running shorewall
+	fi
+	;;
+  stop)
+	if [ -f /var/lock/subsys/shorewall ]; then
+		msg_stopping Shorewall
+		deltext ; ok
+	        exec /sbin/shorewall stop >/dev/null
+		rm -f /var/lock/subsys/shorewall >/dev/null 2>&1
+	else
+		msg_not_running shorewall
+	fi
+	;;
+  status)
+	status shorewall
+	exec /sbin/shorewall status
+	exit $?
+	;;
+  restart)
+	$0 stop
+	$0 start
+	exit $?
+	;;
+  *)
+ 	msg_usage "$0 {start|stop|restart|status}"
+	exit 3
 esac

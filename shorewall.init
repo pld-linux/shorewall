@@ -2,7 +2,7 @@
 #
 # shorewall		The Shoreline Firewall (Shorewall) Packet Filtering Firewall 
 #
-# chkconfig:	345 09 98
+# chkconfig:	2345 10 89
 #
 # description: Packet filtering firewall
 #
@@ -14,10 +14,17 @@
 # Get network config
 . /etc/sysconfig/network
 
-# Get shorewall config
-. /etc/sysconfig/shorewall
+# Check that networking is up
+if is_yes "${NETWORKING}"; then
+	if [ ! -f /var/lock/subsys/network ]; then
+		msg_network_down shorewall
+		exit 1
+	fi
+else
+        exit 0
+fi
 
-# See how we were called.
+# See how we were called
 case "$1" in
   start)
 	if [ ! -f /var/lock/subsys/shorewall ]; then

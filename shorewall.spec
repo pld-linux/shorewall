@@ -2,13 +2,12 @@ Summary:	Shoreline Firewall - an iptables-based firewall for Linux systems
 Summary(pl):	Shoreline Firewall - zapora sieciowa oparta na iptables
 Name:		shorewall
 Version:	2.2.3
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://shorewall.net/pub/shorewall/2.2/%{name}-%{version}/%{name}-%{version}.tgz
 # Source0-md5:	df114b25a419d77915598de5844b423e
 Source1:	%{name}.init
-Source2:	%{name}.sysconfig
 Patch0:		%{name}-config.patch
 URL:		http://www.shorewall.net/
 Requires:	iproute2
@@ -38,9 +37,7 @@ i prostotê konfiguracji.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
-install -d $RPM_BUILD_ROOT/etc/sysconfig
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/shorewall
-install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/shorewall
 export PREFIX=$RPM_BUILD_ROOT ; \
 export OWNER=`id -n -u` ; \
 export GROUP=`id -n -g` ;\
@@ -51,17 +48,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add shorewall
-if [ -f /var/lock/subsys/shorewall ]; then
-	%{_sysconfdir}/rc.d/init.d/shorewall restart >&2
-else
-	echo "Run \"%{_sysconfdir}/rc.d/init.d/shorewall start\" to start shorewall."
-fi
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/shorewall ]; then
-		%{_sysconfdir}/rc.d/init.d/shorewall stop>&2
-	fi
 	/sbin/chkconfig --del shorewall
 fi
 
@@ -69,7 +58,6 @@ fi
 %defattr(644,root,root,755)
 %doc changelog.txt INSTALL releasenotes.txt tunnel
 %attr(754,root,root) /etc/rc.d/init.d/shorewall
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/shorewall
 %attr(700,root,root) %dir %{_sysconfdir}/shorewall
 %attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/shorewall.conf
 %attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/zones

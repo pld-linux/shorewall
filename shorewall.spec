@@ -1,12 +1,12 @@
 Summary:	Shoreline Firewall - an iptables-based firewall for Linux systems
 Summary(pl):	Shoreline Firewall - zapora sieciowa oparta na iptables
 Name:		shorewall
-Version:	2.2.3
+Version:	2.2.4
 Release:	0.2
 License:	GPL
 Group:		Networking/Utilities
-Source0:	http://shorewall.net/pub/shorewall/2.2/%{name}-%{version}/%{name}-%{version}.tgz
-# Source0-md5:	df114b25a419d77915598de5844b423e
+Source0:	http://shorewall.net/pub/shorewall/2.2/shorewall-%{version}/%{name}-%{version}.tgz
+# Source0-md5:	a8010f4a7dcb01689f7768945aac88a5
 Source1:	%{name}.init
 Patch0:		%{name}-config.patch
 URL:		http://www.shorewall.net/
@@ -59,34 +59,35 @@ fi
 %doc changelog.txt INSTALL releasenotes.txt tunnel
 %attr(754,root,root) /etc/rc.d/init.d/shorewall
 %attr(700,root,root) %dir %{_sysconfdir}/shorewall
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/shorewall.conf
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/zones
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/policy
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/interfaces
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/rules
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/nat
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/netmap
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/params
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/proxyarp
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/routestopped
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/maclist
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/masq
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/modules
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/tcrules
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/tos
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/tunnels
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/hosts
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/blacklist
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/init
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/initdone
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/start
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/stop
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/stopped
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/ecn
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/accounting
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/actions
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/ipsec
-%attr(600,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/shorewall/continue
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/shorewall.conf
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/zones
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/policy
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/interfaces
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/rules
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/nat
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/netmap
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/params
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/proxyarp
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/routestopped
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/maclist
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/masq
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/modules
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/tcrules
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/tos
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/tunnels
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/hosts
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/blacklist
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/init
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/initdone
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/start
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/stop
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/stopped
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/ecn
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/accounting
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/actions
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/ipsec
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/continue
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/started
 
 %attr(754,root,root) /sbin/shorewall
 

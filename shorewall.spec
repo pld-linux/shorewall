@@ -1,12 +1,12 @@
 Summary:	Shoreline Firewall - an iptables-based firewall for Linux systems
 Summary(pl):	Shoreline Firewall - zapora sieciowa oparta na iptables
 Name:		shorewall
-Version:	2.2.5
+Version:	2.4.4
 Release:	0.2
 License:	GPL
 Group:		Networking/Utilities
-Source0:	http://shorewall.net/pub/shorewall/2.2/shorewall-%{version}/%{name}-%{version}.tgz
-# Source0-md5:	e454f4af193b8546d3c75fb82647051a
+Source0:	http://shorewall.net/pub/shorewall/2.4/shorewall-%{version}/%{name}-%{version}.tgz
+# Source0-md5:	de12be9692723cd4badaed983f0a4694
 Source1:	%{name}.init
 Patch0:		%{name}-config.patch
 URL:		http://www.shorewall.net/
@@ -88,6 +88,8 @@ fi
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/ipsec
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/continue
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/started
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/providers
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/routes
 
 %attr(754,root,root) /sbin/shorewall
 
@@ -101,6 +103,7 @@ fi
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowIMAP
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowNNTP
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowNTP
+%attr(600,root,root) %{_datadir}/shorewall/action.AllowNTPbrd
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowPCA
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowPing
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowPOP3
@@ -109,6 +112,7 @@ fi
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowSMTP
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowSNMP
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowSSH
+%attr(600,root,root) %{_datadir}/shorewall/action.AllowSubmission
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowTelnet
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowTrcrt
 %attr(600,root,root) %{_datadir}/shorewall/action.AllowVNC

@@ -1,12 +1,12 @@
 Summary:	Shoreline Firewall - an iptables-based firewall for Linux systems
 Summary(pl):	Shoreline Firewall - zapora sieciowa oparta na iptables
 Name:		shorewall
-Version:	2.4.5
+Version:	3.0.0
 Release:	0.2
 License:	GPL
 Group:		Networking/Utilities
-Source0:	http://shorewall.net/pub/shorewall/2.4/shorewall-%{version}/%{name}-%{version}.tgz
-# Source0-md5:	5c686d6b200942d534fc8cdf0952a570
+Source0:	http://shorewall.net/pub/shorewall/3.0/shorewall-%{version}/%{name}-%{version}.tgz
+# Source0-md5:	6fe69c3ad41f04e3bc0d7987a0c0d3ce
 Source1:	%{name}.init
 Patch0:		%{name}-config.patch
 URL:		http://www.shorewall.net/
@@ -36,8 +36,11 @@ i prostotê konfiguracji.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
+install -d $RPM_BUILD_ROOT{/etc/rc.d/init.d,%{_mandir}/man8}
+
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/shorewall
+install debian/shorewall.8 $RPM_BUILD_ROOT%{_mandir}/man8
+
 export PREFIX=$RPM_BUILD_ROOT ; \
 export OWNER=`id -n -u` ; \
 export GROUP=`id -n -g` ;\
@@ -57,7 +60,11 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc changelog.txt INSTALL releasenotes.txt tunnel
+%{_mandir}/man8/*
+%attr(700,root,root) %dir /var/lib/shorewall
+%attr(754,root,root) /sbin/shorewall
 %attr(754,root,root) /etc/rc.d/init.d/shorewall
+
 %attr(700,root,root) %dir %{_sysconfdir}/shorewall
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/shorewall.conf
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/zones
@@ -89,49 +96,57 @@ fi
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/continue
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/started
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/providers
-%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/routes
-
-%attr(754,root,root) /sbin/shorewall
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/tcclasses
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/tcdevices
 
 %attr(700,root,root) %dir %{_datadir}/shorewall
 %attr(600,root,root) %{_datadir}/shorewall/version
 %attr(600,root,root) %{_datadir}/shorewall/actions.std
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowAuth
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowDNS
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowFTP
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowICMPs
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowIMAP
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowNNTP
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowNTP
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowNTPbrd
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowPCA
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowPing
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowPOP3
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowRdate
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowSMB
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowSMTP
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowSNMP
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowSSH
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowSubmission
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowTelnet
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowTrcrt
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowVNC
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowVNCL
-%attr(600,root,root) %{_datadir}/shorewall/action.AllowWeb
 %attr(600,root,root) %{_datadir}/shorewall/action.Drop
-%attr(600,root,root) %{_datadir}/shorewall/action.DropDNSrep
-%attr(600,root,root) %{_datadir}/shorewall/action.DropPing
-%attr(600,root,root) %{_datadir}/shorewall/action.DropSMB
-%attr(600,root,root) %{_datadir}/shorewall/action.DropUPnP
 %attr(600,root,root) %{_datadir}/shorewall/action.Reject
-%attr(600,root,root) %{_datadir}/shorewall/action.RejectAuth
-%attr(600,root,root) %{_datadir}/shorewall/action.RejectSMB
 %attr(600,root,root) %{_datadir}/shorewall/action.template
+%attr(600,root,root) %{_datadir}/shorewall/macro.AllowICMPs
+%attr(600,root,root) %{_datadir}/shorewall/macro.Amanda
+%attr(600,root,root) %{_datadir}/shorewall/macro.Auth
+%attr(600,root,root) %{_datadir}/shorewall/macro.BitTorrent
+%attr(600,root,root) %{_datadir}/shorewall/macro.CVS
+%attr(600,root,root) %{_datadir}/shorewall/macro.DNS
+%attr(600,root,root) %{_datadir}/shorewall/macro.Distcc
+%attr(600,root,root) %{_datadir}/shorewall/macro.DropDNSrep
+%attr(600,root,root) %{_datadir}/shorewall/macro.DropUPnP
+%attr(600,root,root) %{_datadir}/shorewall/macro.Edonkey
+%attr(600,root,root) %{_datadir}/shorewall/macro.FTP
+%attr(600,root,root) %{_datadir}/shorewall/macro.Gnutella
+%attr(600,root,root) %{_datadir}/shorewall/macro.ICQ
+%attr(600,root,root) %{_datadir}/shorewall/macro.IMAP
+%attr(600,root,root) %{_datadir}/shorewall/macro.LDAP
+%attr(600,root,root) %{_datadir}/shorewall/macro.MySQL
+%attr(600,root,root) %{_datadir}/shorewall/macro.NNTP
+%attr(600,root,root) %{_datadir}/shorewall/macro.NTP
+%attr(600,root,root) %{_datadir}/shorewall/macro.NTPbrd
+%attr(600,root,root) %{_datadir}/shorewall/macro.PCA
+%attr(600,root,root) %{_datadir}/shorewall/macro.POP3
+%attr(600,root,root) %{_datadir}/shorewall/macro.Ping
+%attr(600,root,root) %{_datadir}/shorewall/macro.PostgreSQL
+%attr(600,root,root) %{_datadir}/shorewall/macro.Rdate
+%attr(600,root,root) %{_datadir}/shorewall/macro.Rsync
+%attr(600,root,root) %{_datadir}/shorewall/macro.SMB
+%attr(600,root,root) %{_datadir}/shorewall/macro.SMBswat
+%attr(600,root,root) %{_datadir}/shorewall/macro.SMTP
+%attr(600,root,root) %{_datadir}/shorewall/macro.SNMP
+%attr(600,root,root) %{_datadir}/shorewall/macro.SPAMD
+%attr(600,root,root) %{_datadir}/shorewall/macro.SSH
+%attr(600,root,root) %{_datadir}/shorewall/macro.SVN
+%attr(600,root,root) %{_datadir}/shorewall/macro.Submission
+%attr(600,root,root) %{_datadir}/shorewall/macro.Syslog
+%attr(600,root,root) %{_datadir}/shorewall/macro.Telnet
+%attr(600,root,root) %{_datadir}/shorewall/macro.Trcrt
+%attr(600,root,root) %{_datadir}/shorewall/macro.VNC
+%attr(600,root,root) %{_datadir}/shorewall/macro.VNCL
+%attr(600,root,root) %{_datadir}/shorewall/macro.Web
+%attr(600,root,root) %{_datadir}/shorewall/macro.template
 %attr(644,root,root) %{_datadir}/shorewall/functions
 %attr(754,root,root) %{_datadir}/shorewall/firewall
 %attr(754,root,root) %{_datadir}/shorewall/help
 %attr(600,root,root) %{_datadir}/shorewall/rfc1918
-%attr(600,root,root) %{_datadir}/shorewall/bogons
 %attr(600,root,root) %{_datadir}/shorewall/configpath
-
-%attr(700,root,root) %dir /var/lib/shorewall

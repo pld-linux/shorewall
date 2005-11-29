@@ -1,12 +1,12 @@
 Summary:	Shoreline Firewall - an iptables-based firewall for Linux systems
 Summary(pl):	Shoreline Firewall - zapora sieciowa oparta na iptables
 Name:		shorewall
-Version:	3.0.1
+Version:	3.0.2
 Release:	0.2
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://shorewall.net/pub/shorewall/3.0/shorewall-%{version}/%{name}-%{version}.tgz
-# Source0-md5:	aa0a3dcbaef5cef50472bd650d435716
+# Source0-md5:	47938b7a1838192688eefe30b5fd57e8
 Source1:	%{name}.init
 Patch0:		%{name}-config.patch
 URL:		http://www.shorewall.net/
@@ -144,6 +144,7 @@ fi
 %attr(600,root,root) %{_datadir}/shorewall/macro.VNC
 %attr(600,root,root) %{_datadir}/shorewall/macro.VNCL
 %attr(600,root,root) %{_datadir}/shorewall/macro.Web
+%attr(600,root,root) %{_datadir}/shorewall/macro.Webmin
 %attr(600,root,root) %{_datadir}/shorewall/macro.template
 %attr(644,root,root) %{_datadir}/shorewall/functions
 %attr(754,root,root) %{_datadir}/shorewall/firewall

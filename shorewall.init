@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# shorewall		The Shoreline Firewall (Shorewall) Packet Filtering Firewall 
+# shorewall		The Shoreline Firewall (Shorewall) Packet Filtering Firewall
 #
 # chkconfig:	2345 10 89
 #

@@ -1,12 +1,12 @@
 Summary:	Shoreline Firewall - an iptables-based firewall for Linux systems
 Summary(pl):	Shoreline Firewall - zapora sieciowa oparta na iptables
 Name:		shorewall
-Version:	3.0.2
+Version:	3.0.3
 Release:	0.2
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://shorewall.net/pub/shorewall/3.0/shorewall-%{version}/%{name}-%{version}.tgz
-# Source0-md5:	47938b7a1838192688eefe30b5fd57e8
+# Source0-md5:	c77d8713f4ebf5fd0bbc05f1274487fc
 Source1:	%{name}.init
 Patch0:		%{name}-config.patch
 URL:		http://www.shorewall.net/
@@ -36,10 +36,9 @@ i prostotê konfiguracji.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/rc.d/init.d,%{_mandir}/man8}
+install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/shorewall
-install debian/shorewall.8 $RPM_BUILD_ROOT%{_mandir}/man8
 
 export PREFIX=$RPM_BUILD_ROOT ; \
 export OWNER=`id -n -u` ; \
@@ -59,8 +58,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc changelog.txt INSTALL releasenotes.txt tunnel
-%{_mandir}/man8/*
+%doc INSTALL releasenotes.txt tunnel Samples/* 
 %attr(700,root,root) %dir /var/lib/shorewall
 %attr(754,root,root) /sbin/shorewall
 %attr(754,root,root) /etc/rc.d/init.d/shorewall

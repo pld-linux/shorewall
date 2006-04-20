@@ -10,9 +10,11 @@ Source0:	http://shorewall.net/pub/shorewall/3.0/shorewall-%{version}/%{name}-%{v
 Source1:	%{name}.init
 Patch0:		%{name}-config.patch
 URL:		http://www.shorewall.net/
+Requires(post,preun):	/sbin/chkconfig
+Requires:	bash
 Requires:	iproute2
 Requires:	iptables
-Requires:	bash
+Requires:	rc-scripts
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -58,7 +60,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc INSTALL releasenotes.txt tunnel Samples/* 
+%doc INSTALL releasenotes.txt tunnel Samples/*
 %attr(700,root,root) %dir /var/lib/shorewall
 %attr(754,root,root) /sbin/shorewall
 %attr(754,root,root) /etc/rc.d/init.d/shorewall

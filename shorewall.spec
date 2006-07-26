@@ -148,7 +148,7 @@ fi
 %attr(600,root,root) %{_datadir}/shorewall/macro.Web
 %attr(600,root,root) %{_datadir}/shorewall/macro.Webmin
 %attr(600,root,root) %{_datadir}/shorewall/macro.template
-%attr(644,root,root) %{_datadir}/shorewall/functions
+%{_datadir}/shorewall/functions
 %attr(754,root,root) %{_datadir}/shorewall/firewall
 %attr(754,root,root) %{_datadir}/shorewall/help
 %attr(600,root,root) %{_datadir}/shorewall/rfc1918

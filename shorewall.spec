@@ -1,5 +1,5 @@
 Summary:	Shoreline Firewall - an iptables-based firewall for Linux systems
-Summary(pl):	Shoreline Firewall - zapora sieciowa oparta na iptables
+Summary(pl.UTF-8):   Shoreline Firewall - zapora sieciowa oparta na iptables
 Name:		shorewall
 Version:	3.0.9
 Release:	1
@@ -24,13 +24,13 @@ to use Netfilter (iptables) based firewall that can be used on a
 dedicated firewall system, a multi-function gateway/ router/server or
 on a standalone GNU/Linux system.
 
-%description -l pl
-Pakiet Shoreline Firewall, nazywany zwykle Shorewall, jest zapor±
-sieciow± opart± na wbudowanych w j±dro Linuksa mechanizmach
-filtrowania pakietów sieciowych (iptables). Shorewall jest bardzo
-wszechstronny i mo¿e byæ wykorzystany jako zapora sieciowa,
-wielofunkcyjna brama lub router. Pakiet ten ³±czy w sobie elastyczno¶æ
-i prostotê konfiguracji.
+%description -l pl.UTF-8
+Pakiet Shoreline Firewall, nazywany zwykle Shorewall, jest zaporÄ…
+sieciowÄ… opartÄ… na wbudowanych w jÄ…dro Linuksa mechanizmach
+filtrowania pakietÃ³w sieciowych (iptables). Shorewall jest bardzo
+wszechstronny i moÅ¼e byÄ‡ wykorzystany jako zapora sieciowa,
+wielofunkcyjna brama lub router. Pakiet ten Å‚Ä…czy w sobie elastycznoÅ›Ä‡
+i prostotÄ™ konfiguracji.
 
 %prep
 %setup -q

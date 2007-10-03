@@ -5,7 +5,7 @@ Version:	4.0.4
 Release:	0.1
 License:	GPL
 Group:		Networking/Utilities
-Source0:	http://shorewall.net/pub/shorewall/4.0/shorewall-common-%{version}/%{name}-common-%{version}.tgz
+Source0:	http://shorewall.net/pub/shorewall/4.0/shorewall-%{version}/%{name}-common-%{version}.tgz
 # Source0-md5:	70e32b1dcd56f0bbd3599ff5d9246217
 Source1:	%{name}.init
 Patch0:		%{name}-config.patch

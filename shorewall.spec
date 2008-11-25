@@ -1,12 +1,12 @@
 Summary:	Shoreline Firewall - an iptables-based firewall for Linux systems
 Summary(pl.UTF-8):	Shoreline Firewall - zapora sieciowa oparta na iptables
 Name:		shorewall
-Version:	4.2.1
+Version:	4.2.2
 Release:	0.1
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://shorewall.net/pub/shorewall/4.2/shorewall-%{version}/%{name}-common-%{version}.tgz
-# Source0-md5:	78a6c1483012d327afc4758a492fcab1
+# Source0-md5:	084ea3c7de692ad7659733f861c4fc9f
 Source1:	%{name}.init
 Patch0:		%{name}-config.patch
 URL:		http://www.shorewall.net/
@@ -118,12 +118,15 @@ fi
 %attr(600,root,root) %{_datadir}/shorewall/macro.Auth
 %attr(600,root,root) %{_datadir}/shorewall/macro.BitTorrent
 %attr(600,root,root) %{_datadir}/shorewall/macro.CVS
+%attr(600,root,root) %{_datadir}/shorewall/macro.DAAP
+%attr(600,root,root) %{_datadir}/shorewall/macro.DCC
 %attr(600,root,root) %{_datadir}/shorewall/macro.DNS
 %attr(600,root,root) %{_datadir}/shorewall/macro.Drop
 %attr(600,root,root) %{_datadir}/shorewall/macro.Distcc
 %attr(600,root,root) %{_datadir}/shorewall/macro.DropDNSrep
 %attr(600,root,root) %{_datadir}/shorewall/macro.DropUPnP
 %attr(600,root,root) %{_datadir}/shorewall/macro.FTP
+%attr(600,root,root) %{_datadir}/shorewall/macro.GNUnet
 %attr(600,root,root) %{_datadir}/shorewall/macro.Gnutella
 %attr(600,root,root) %{_datadir}/shorewall/macro.Edonkey
 %attr(600,root,root) %{_datadir}/shorewall/macro.Finger
@@ -142,6 +145,7 @@ fi
 %attr(600,root,root) %{_datadir}/shorewall/macro.JabberPlain
 %attr(600,root,root) %{_datadir}/shorewall/macro.JabberSecure
 %attr(600,root,root) %{_datadir}/shorewall/macro.Jabberd
+%attr(600,root,root) %{_datadir}/shorewall/macro.JAP
 %attr(600,root,root) %{_datadir}/shorewall/macro.Jetdirect
 %attr(600,root,root) %{_datadir}/shorewall/macro.L2TP
 %attr(600,root,root) %{_datadir}/shorewall/macro.LDAP

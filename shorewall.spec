@@ -1,12 +1,12 @@
 Summary:	Shoreline Firewall - an iptables-based firewall for Linux systems
 Summary(pl.UTF-8):	Shoreline Firewall - zapora sieciowa oparta na iptables
 Name:		shorewall
-Version:	4.2.4
+Version:	4.2.6
 Release:	0.1
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://shorewall.net/pub/shorewall/4.2/shorewall-%{version}/%{name}-common-%{version}.tgz
-# Source0-md5:	2f44cafca502cb1eaa69ba1914e9fd30
+# Source0-md5:	9b91dc35068ccc0ba308a30947cafe48
 Source1:	%{name}.init
 Patch0:		%{name}-config.patch
 URL:		http://www.shorewall.net/
@@ -98,6 +98,7 @@ fi
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/continue
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/started
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/providers
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/restored
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/route_rules
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/tcclasses
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/tcdevices
@@ -117,6 +118,7 @@ fi
 %attr(600,root,root) %{_datadir}/shorewall/macro.Amanda
 %attr(600,root,root) %{_datadir}/shorewall/macro.Auth
 %attr(600,root,root) %{_datadir}/shorewall/macro.BitTorrent
+%attr(600,root,root) %{_datadir}/shorewall/macro.BitTorrent32
 %attr(600,root,root) %{_datadir}/shorewall/macro.CVS
 %attr(600,root,root) %{_datadir}/shorewall/macro.DAAP
 %attr(600,root,root) %{_datadir}/shorewall/macro.DCC
@@ -130,8 +132,10 @@ fi
 %attr(600,root,root) %{_datadir}/shorewall/macro.Gnutella
 %attr(600,root,root) %{_datadir}/shorewall/macro.Edonkey
 %attr(600,root,root) %{_datadir}/shorewall/macro.Finger
+%attr(600,root,root) %{_datadir}/shorewall/macro.Git
 %attr(600,root,root) %{_datadir}/shorewall/macro.GRE
 %attr(600,root,root) %{_datadir}/shorewall/macro.ICQ
+%attr(600,root,root) %{_datadir}/shorewall/macro.IRC
 %attr(600,root,root) %{_datadir}/shorewall/macro.HTTP
 %attr(600,root,root) %{_datadir}/shorewall/macro.HTTPS
 %attr(600,root,root) %{_datadir}/shorewall/macro.IMAP
@@ -214,6 +218,7 @@ fi
 %attr(600,root,root) %{_datadir}/shorewall/configfiles/policy
 %attr(600,root,root) %{_datadir}/shorewall/configfiles/providers
 %attr(600,root,root) %{_datadir}/shorewall/configfiles/proxyarp
+%attr(600,root,root) %{_datadir}/shorewall/configfiles/restored
 %attr(600,root,root) %{_datadir}/shorewall/configfiles/route_rules
 %attr(600,root,root) %{_datadir}/shorewall/configfiles/routestopped
 %attr(600,root,root) %{_datadir}/shorewall/configfiles/rules

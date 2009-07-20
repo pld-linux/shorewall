@@ -1,12 +1,11 @@
 Summary:	Shoreline Firewall - an iptables-based firewall for Linux systems
 Summary(pl.UTF-8):	Shoreline Firewall - zapora sieciowa oparta na iptables
 Name:		shorewall
-Version:	4.2.6
+Version:	4.2.10
 Release:	0.1
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://shorewall.net/pub/shorewall/4.2/shorewall-%{version}/%{name}-common-%{version}.tgz
-# Source0-md5:	9b91dc35068ccc0ba308a30947cafe48
 Source1:	%{name}.init
 Patch0:		%{name}-config.patch
 URL:		http://www.shorewall.net/
@@ -15,6 +14,7 @@ Requires:	bash
 Requires:	iproute2
 Requires:	iptables
 Requires:	rc-scripts
+Requires:       shorewall-compiler
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-common-%{version}-root-%(id -u -n)
 
@@ -46,6 +46,8 @@ export PREFIX=$RPM_BUILD_ROOT ; \
 export OWNER=`id -n -u` ; \
 export GROUP=`id -n -g` ;\
 ./install.sh
+
+rm -f $RPM_BUILD_ROOT/etc/init.d/shorewall
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -80,6 +82,7 @@ fi
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/proxyarp
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/routestopped
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/maclist
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/notrack
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/masq
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/tcrules
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/tos
@@ -103,6 +106,8 @@ fi
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/tcclasses
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/tcdevices
 %attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/tcfilters
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/shorewall/Makefile
+
 
 %attr(700,root,root) %dir %{_datadir}/shorewall
 %attr(600,root,root) %{_datadir}/shorewall/version
@@ -214,6 +219,7 @@ fi
 %attr(600,root,root) %{_datadir}/shorewall/configfiles/masq
 %attr(600,root,root) %{_datadir}/shorewall/configfiles/nat
 %attr(600,root,root) %{_datadir}/shorewall/configfiles/netmap
+%attr(600,root,root) %{_datadir}/shorewall/configfiles/notrack
 %attr(600,root,root) %{_datadir}/shorewall/configfiles/params
 %attr(600,root,root) %{_datadir}/shorewall/configfiles/policy
 %attr(600,root,root) %{_datadir}/shorewall/configfiles/providers
@@ -234,6 +240,7 @@ fi
 %attr(600,root,root) %{_datadir}/shorewall/configfiles/tos
 %attr(600,root,root) %{_datadir}/shorewall/configfiles/tunnels
 %attr(600,root,root) %{_datadir}/shorewall/configfiles/zones
+%attr(754,root,root) %{_datadir}/shorewall/configfiles/Makefile
 %{_datadir}/shorewall/functions
 %attr(754,root,root) %{_datadir}/shorewall/modules
 %attr(754,root,root) %{_datadir}/shorewall/firewall

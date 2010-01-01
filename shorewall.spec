@@ -16,7 +16,7 @@ Requires:	iptables
 Requires:	rc-scripts
 Requires:       shorewall-compiler
 BuildArch:	noarch
-BuildRoot:	%{tmpdir}/%{name}-common-%{version}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 The Shoreline Firewall, more commonly known as "Shorewall", is an easy

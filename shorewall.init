@@ -21,30 +21,40 @@ if is_yes "${NETWORKING}"; then
 		exit 1
 	fi
 else
-        exit 0
+	exit 0
 fi
+
+start() {
+	if [ -f /var/lock/subsys/shorewall ]; then
+		msg_already_running shorewall
+		return
+	fi
+
+	msg_starting "Shorewall"
+	deltext; ok
+	# FIXME: use daemon and handle OK/FAIL
+	exec /sbin/shorewall -q start >/dev/null
+	touch /var/lock/subsys/shorewall
+}
+
+stop() {
+	if [ ! -f /var/lock/subsys/shorewall ]; then
+		msg_not_running shorewall
+		return
+	fi
+
+	msg_stopping "Shorewall"
+	deltext; ok
+	# FIXME: use killproc or handle OK/FAIL manually
+	exec /sbin/shorewall stop >/dev/null
+	rm -f /var/lock/subsys/shorewall >/dev/null 2>&1
+}
 
 # See how we were called
 case "$1" in
   start)
-	if [ ! -f /var/lock/subsys/shorewall ]; then
-		msg_starting Shorewall
-		deltext ; ok
-		exec /sbin/shorewall -q start >/dev/null
-		touch /var/lock/subsys/shorewall
-	else
-		msg_already_running shorewall
-	fi
 	;;
   stop)
-	if [ -f /var/lock/subsys/shorewall ]; then
-		msg_stopping Shorewall
-		deltext ; ok
-	        exec /sbin/shorewall stop >/dev/null
-		rm -f /var/lock/subsys/shorewall >/dev/null 2>&1
-	else
-		msg_not_running shorewall
-	fi
 	;;
   status)
 	status shorewall
@@ -52,9 +62,8 @@ case "$1" in
 	exit $?
 	;;
   restart)
-	$0 stop
-	$0 start
-	exit $?
+	stop
+	start
 	;;
   *)
  	msg_usage "$0 {start|stop|restart|status}"

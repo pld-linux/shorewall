@@ -1,0 +1,80 @@
+--- shorewall-4.5.21.4/shorewall-init-4.5.21.4/install.sh~	2013-11-26 21:44:23.000000000 +0200
++++ shorewall-4.5.21.4/shorewall-init-4.5.21.4/install.sh	2013-11-26 21:44:27.995923734 +0200
+@@ -228,7 +228,7 @@
+     apple)
+ 	T=
+ 	;;
+-    debian|gentoo|redhat|suse|slackware|archlinux)
++    debian|gentoo|redhat|suse|slackware|archlinux|pld)
+ 	;;
+     *)
+ 	[ -n "$BUILD" ] && echo "ERROR: Unknown BUILD environment ($BUILD)" >&2 || echo "ERROR: Unknown BUILD environment"
+@@ -261,6 +261,9 @@
+     suse)
+ 	echo "Installing SuSE-specific configuration..."
+ 	;;
++    pld)
++	echo "Installing PLD Linux-specific configuration..."
++	;;
+     linux)
+ 	echo "ERROR: Shorewall-init is not supported on this system" >&2
+ 	exit 1
+--- shorewall-4.5.21.4/shorewall-core-4.5.21.4/install.sh~	2013-11-23 17:20:38.000000000 +0200
++++ shorewall-4.5.21.4/shorewall-core-4.5.21.4/install.sh	2013-11-26 22:21:01.647513003 +0200
+@@ -276,7 +276,7 @@
+     apple)
+ 	echo "Installing Mac-specific configuration...";
+ 	;;
+-    debian|gentoo|redhat|slackware|archlinux|linux|suse)
++    debian|gentoo|redhat|slackware|archlinux|linux|suse|pld)
+ 	;;
+     *)
+ 	echo "ERROR: Unknown HOST \"$HOST\"" >&2
+--- shorewall-4.5.21.4/shorewall-4.5.21.4/install.sh~	2013-11-23 17:20:38.000000000 +0200
++++ shorewall-4.5.21.4/shorewall-4.5.21.4/install.sh	2013-11-26 22:22:08.727285691 +0200
+@@ -295,6 +295,9 @@
+     archlinux)
+ 	echo "Installing ArchLinux-specific configuration..."
+ 	;;
++    pld)
++	echo "Installing PLD Linux-specific configuration..."
++	;;
+     linux)
+ 	;;
+     *)
+--- shorewall-4.5.21.4/shorewall-lite-4.5.21.4/install.sh~	2013-11-23 17:20:39.000000000 +0200
++++ shorewall-4.5.21.4/shorewall-lite-4.5.21.4/install.sh	2013-11-26 22:24:36.217448281 +0200
+@@ -289,6 +289,9 @@
+     suse)
+ 	echo "Installing Suse-specific configuration..."
+ 	;;
++    pld)
++	echo "Installing PLD Linux-specific configuration..."
++	;;
+     linux)
+ 	;;
+     *)
+--- shorewall-4.5.21.4/shorewall6-4.5.21.4/install.sh~	2013-11-23 17:20:39.000000000 +0200
++++ shorewall-4.5.21.4/shorewall6-4.5.21.4/install.sh	2013-11-26 22:26:06.484959575 +0200
+@@ -295,6 +295,9 @@
+     archlinux)
+ 	echo "Installing ArchLinux-specific configuration..."
+ 	;;
++    pld)
++	echo "Installing PLD Linux-specific configuration..."
++	;;
+     linux)
+ 	;;
+     *)
+--- shorewall-4.5.21.4/shorewall6-lite-4.5.21.4/install.sh~	2013-11-23 17:20:39.000000000 +0200
++++ shorewall-4.5.21.4/shorewall6-lite-4.5.21.4/install.sh	2013-11-26 22:26:58.184018766 +0200
+@@ -289,6 +289,9 @@
+     suse)
+ 	echo "Installing Suse-specific configuration..."
+ 	;;
++    pld)
++	echo "Installing PLD Linux-specific configuration..."
++	;;
+     linux)
+ 	;;
+     *)

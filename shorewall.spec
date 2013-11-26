@@ -7,7 +7,7 @@ Summary:	Shoreline Firewall - an iptables-based firewall for Linux systems
 Summary(pl.UTF-8):	Shoreline Firewall - zapora sieciowa oparta na iptables
 Name:		shorewall
 Version:	4.5.21.4
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Networking/Utilities
 Source0:	ftp://www.shorewall.net/pub/shorewall/4.5/shorewall-4.5.21/%{name}-%{version}.tar.bz2
@@ -28,6 +28,7 @@ Patch1:		system-pld.patch
 URL:		http://www.shorewall.net/
 BuildRequires:	perl
 BuildRequires:	perl(Digest::SHA)
+BuildRequires:	bash >= 4.0
 BuildRequires:	systemd-units
 Requires:	%{name}-core = %{version}-%{release}
 Requires:	iproute2
@@ -142,6 +143,12 @@ and shutdown.
 
 %prep
 %setup -qcT -a0 -a1 -a2 -a3 -a4 -a5
+cp -p %{name}-%{version}/shorewallrc.{redhat,pld}
+cp -p %{name}-core-%{version}/shorewallrc.{redhat,pld}
+cp -p %{name}-lite-%{version}/shorewallrc.{redhat,pld}
+cp -p %{name}6-%{version}/shorewallrc.{redhat,pld}
+cp -p %{name}6-lite-%{version}/shorewallrc.{redhat,pld}
+cp -p %{name}-init-%{version}/shorewallrc.{redhat,pld}
 %patch0 -p1
 %patch1 -p1
 
@@ -158,7 +165,7 @@ targets="shorewall-core shorewall shorewall-lite shorewall6 shorewall6-lite shor
 for i in $targets; do
 	cd $i-%{version}
 	./configure \
-		vendor=redhat \
+		VENDOR=pld \
 		LIBEXECDIR=%{_libexecdir} \
 		SYSTEMD=%{systemdunitdir} \
 		SBINDIR=%{_sbindir}

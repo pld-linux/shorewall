@@ -1,21 +1,20 @@
-diff -urN shorewall-2.0.8.orig/shorewall.conf shorewall-2.0.8/shorewall.conf
---- shorewall-2.0.8.orig/shorewall.conf	2004-08-10 15:35:00.000000000 +0200
-+++ shorewall-2.0.8/shorewall.conf	2004-09-14 19:01:49.000000000 +0200
-@@ -52,7 +52,7 @@
- #
- #              http://www.shorewall.net/shorewall_logging.html
+--- shorewall-4.5.21.4/shorewall-4.5.21.4/configfiles/shorewall.conf~	2013-11-16 18:07:23.000000000 +0200
++++ shorewall-4.5.21.4/shorewall-4.5.21.4/configfiles/shorewall.conf	2013-11-26 21:43:06.058797770 +0200
+@@ -31,7 +31,7 @@
+ 
+ LOGALLNEW=
  
 -LOGFILE=/var/log/messages
 +LOGFILE=/var/log/kernel
  
- #
- # LOG FORMAT
-@@ -216,7 +216,7 @@
- # The firewall script is normally interpreted by /bin/sh. If you wish to change
- # the shell used to interpret that script, specify the shell here.
+ LOGFORMAT="Shorewall:%s:%s:"
+ 
+@@ -83,7 +83,7 @@
+ 
+ RESTOREFILE=restore
  
 -SHOREWALL_SHELL=/bin/sh
 +SHOREWALL_SHELL=/bin/bash
  
- # SUBSYSTEM LOCK FILE
- #
+ SUBSYSLOCK=/var/lock/subsys/shorewall
+ 

@@ -7,7 +7,7 @@ Summary:	Shoreline Firewall - an iptables-based firewall for Linux systems
 Summary(pl.UTF-8):	Shoreline Firewall - zapora sieciowa oparta na iptables
 Name:		shorewall
 Version:	4.5.21.4
-Release:	0.2
+Release:	0.5
 License:	GPL
 Group:		Networking/Utilities
 Source0:	ftp://www.shorewall.net/pub/shorewall/4.5/shorewall-4.5.21/%{name}-%{version}.tar.bz2
@@ -248,8 +248,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/shorewall/modules*
 %{_datadir}/shorewall/prog.*
 %{_datadir}/shorewall/version
-%{_libexecdir}/shorewall/compiler.pl
-%{_libexecdir}/shorewall/getparams
+%attr(755,root,root) %{_libexecdir}/shorewall/compiler.pl
+%attr(755,root,root) %{_libexecdir}/shorewall/getparams
 %{perl_vendorlib}/Shorewall
 %{_mandir}/man5/shorewall*
 %exclude %{_mandir}/man5/shorewall6*
@@ -305,7 +305,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man5/shorewall6-lite*
 %{_mandir}/man8/shorewall6-lite*
 %{_datadir}/shorewall6-lite
-%{_libexecdir}/shorewall6-lite
+%dir %{_libexecdir}/shorewall6-lite
+%{_libexecdir}/shorewall6-lite/shorecap
 %{systemdunitdir}/shorewall6-lite.service
 %attr(754,root,root) /etc/rc.d/init.d/shorewall6-lite
 %dir %{_localstatedir}/lib/shorewall6-lite
@@ -321,17 +322,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/shorewall/lib.common
 %{_datadir}/shorewall/shorewallrc
 %dir %{_libexecdir}/shorewall
-%{_libexecdir}/shorewall/wait4ifup
+%attr(755,root,root) %{_libexecdir}/shorewall/wait4ifup
 
 %files init
 %defattr(644,root,root,755)
 %doc shorewall-init-%{version}/{COPYING,changelog.txt,releasenotes.txt}
 %attr(755,root,root) %{_sbindir}/shorewall-init
-%{_sysconfdir}/NetworkManager/dispatcher.d/01-shorewall
+%attr(755,root,root) %{_sysconfdir}/NetworkManager/dispatcher.d/01-shorewall
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/shorewall-init
 /etc/logrotate.d/shorewall-init
 %{_mandir}/man8/shorewall-init.8.*
 %{_datadir}/shorewall-init
-%{_libexecdir}/shorewall-init
+%dir %{_libexecdir}/shorewall-init
+%attr(755,root,root) %{_libexecdir}/shorewall-init/ifupdown
 %{systemdunitdir}/shorewall-init.service
 %attr(754,root,root) /etc/rc.d/init.d/shorewall-init
